@@ -1,0 +1,83 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>Currency Converter</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		{% tailwind_css %}
+	</head>
+	<div class="text-4xl italic text-center my-10 text-white">
+		<h1>CURRENCY CONVERTER 💲💲💲</h1>
+	</div>
+	<body class="bg-zinc-800">
+		<div id="conversion-row" class="flex justify-center space-x-2">
+			<div class="flex-col">
+				<label for="convert-from" class="block mb-2 text-sm font-medium text-white">Convert From:</label>
+				<select id="convert-from" class="block appearance-none w-full bg-white border border-gray-200 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+					<option selected>Choose a currency</option>
+					<option value="USD">USD - US Dollar</option>
+					<option value="RUB">RUB - Russian Ruble</option>
+					<option value="EUR">EUR - Euro</option>
+					<option value="JPY">JPY - Japanese Yen</option>
+					<option value="GBP">GBP - Great British Pound</option>
+					<option value="AUD">AUD - Australian Dollar</option>
+					<option value="CAD">CAD - Canadian Dollar</option>
+					<option value="CHF">CHF - Swiss Franc</option>
+					<option value="CNY">CNY - Chinese Yuan</option>
+					<option value="HKD">HKD - Hong Kong Dollar</option>
+					<option value="NZD">NZD - New Zealand Dollar</option>
+					<option value="NIO">NIO - Nicaraguan Córdoba</option>
+					<option value="SOS">SOS - Somali Shilling</option>
+					<option value="INR">INR - Indian Rupee</option>
+					<option value="VES">VES - Venezuelan Bolívar</option>
+				</select>
+			</div>
+			<div class="flex-col">
+				<label for="convert-to" class="block mb-2 text-sm font-medium text-white">Convert To:</label>
+				<select id="convert-to" class="block appearance-none w-full bg-white border border-gray-200 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+					<option selected>Choose a currency</option>
+					<option value="USD">USD - US Dollar</option>
+					<option value="RUB">RUB - Russian Ruble</option>
+					<option value="EUR">EUR - Euro</option>
+					<option value="JPY">JPY - Japanese Yen</option>
+					<option value="GBP">GBP - Great British Pound</option>
+					<option value="AUD">AUD - Australian Dollar</option>
+					<option value="CAD">CAD - Canadian Dollar</option>
+					<option value="CHF">CHF - Swiss Franc</option>
+					<option value="CNY">CNY - Chinese Yuan</option>
+					<option value="HKD">HKD - Hong Kong Dollar</option>
+					<option value="NZD">NZD - New Zealand Dollar</option>
+					<option value="NIO">NIO - Nicaraguan Córdoba</option>
+					<option value="SOS">SOS - Somali Shilling</option>
+					<option value="INR">INR - Indian Rupee</option>
+					<option value="VES">VES - Venezuelan Bolívar</option>
+				</select>
+			</div>
+			<div class="relative flex-col items-center">
+				<label for="amount-input" class="block mb-2 text-sm font-medium text-white">Amount To Exchange:</label>
+				<div class="relative">
+					<span id="currency-symbol" class="absolute inset-y-1 left-0 text-xs flex items-center pl-2 pr-1 bg-white text-black" style="width: auto;">$</span>
+					<input id="amount-input" type="number" placeholder="" class="pl-8 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 foucs:border-blue-500">
+					<!-- <input id="amount-input" type="text" placeholder="$" class="appearance-none text-gray-700 placeholder-gray-400 border border-gray-200 rounded-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500" pattern="[0-9]+" required> -->
+				</div>
+				
+			</div>
+			<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+				<svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+					<path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+				</svg>
+			</div>
+		</div>
+		<div id="currency-output-div" class="flex justify-center space-x-2 my-10">
+			<button id="currency-convert-button" onclick="convert()" class="rounded-full bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4">CONVERT</button>
+		</div>
+		<div id="currency-output" class="flex justify-center space-x-2 my-10">
+			<label id="converted-currency-label" for="converted-currency" class="block mb-2 text-sm font-medium text-white">Converted Currency:</label>
+			<p class="text-white" id="converted-currency"></p>
+		</div>
+		<script src="{% static 'js/currency_converter.js' %}"></script>
+	</body>
+	
+</html>
