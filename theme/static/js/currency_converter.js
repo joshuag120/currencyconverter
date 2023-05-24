@@ -53,8 +53,8 @@ function get_currency_symbol(currency) {
 
 
 function convert() {
-    let rg = new RegExp('[' + JOINED_CURRENCY_SYMBOLS + ']', 'g');
-    amount = amount.value.replace(rg, '');
+    str_amount = amount.value;
+    amount = str_amount.match(/\d+(\.\d+)?/)[0];
     convert_from = convert_from.value;
     convert_to = convert_to.value;
     if (amount && convert_from !== 'Choose a currency' && convert_to !== 'Choose a currency') {
