@@ -51,14 +51,27 @@ function get_currency_symbol(currency) {
     return CURRENCY_SYMBOLS[currency];
 }
 
+function get_selected_value_to() {
+    const dropdown = document.getElementById("convert-to");
+    const selectedOption = dropdown.options[dropdown.selectedIndex];
+    const selectedValue = selectedOption.value;
+    return selectedValue;
+}
+
+function get_selected_value_from() {
+    const dropdown = document.getElementById("convert-from");
+    const selectedOption = dropdown.options[dropdown.selectedIndex];
+    const selectedValue = selectedOption.value;
+    return selectedValue;
+}
+
 
 function convert() {
-    str_amount = amount.value;
-    amount = str_amount.match(/\d+(\.\d+)?/)[0];
-    convert_from = convert_from.value;
-    convert_to = convert_to.value;
-    if (amount && convert_from !== 'Choose a currency' && convert_to !== 'Choose a currency') {
-        let formatted_url = `https://api.api-ninjas.com/v1/convertcurrency?want=${convert_to}&have=${convert_from}&amount=${amount}`;
+    amount_val = amount.value;
+    convert_from = get_selected_value_from(convert_from);
+    convert_to = get_selected_value_to(convert_to);
+    if (amount_val && convert_from !== 'Choose a currency' && convert_to !== 'Choose a currency') {
+        let formatted_url = `https://api.api-ninjas.com/v1/convertcurrency?want=${convert_to}&have=${convert_from}&amount=${amount_val}`;
         console.log(formatted_url);
         fetch(formatted_url, {
             headers: {'X-Api-Key': API_KEY}
@@ -68,7 +81,7 @@ function convert() {
             }
             return response.json();
         }).then(data => {
-            document.getElementById('converted-currency').textContent = CURRENCY_SYMBOLS[convert_to] + data['new_amount'];
+            document.getElementById('converted-currency').textContent = get_currency_symbol(convert_to) + data['new_amount'];
         }).catch(error => {
             console.error('request failed:', error);
         })
